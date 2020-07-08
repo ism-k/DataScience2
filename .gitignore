@@ -126,3 +126,6 @@ dmypy.json
 
 # ide
 .idea/
+
+# class
+frenchWeather.new.tar.bz2
