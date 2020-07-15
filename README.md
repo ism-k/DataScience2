@@ -15,3 +15,14 @@
  
  `extra_compile_args=['-Wno-cpp', '-Wno-unused-function', '-std=c99'],` を `extra_compile_args={'gcc': ['/Qstd=c99']},` にして
  `cocoapi/PythonAPI/` 内で `python setup.py build_ext install` したらうまく行ったような気がする．とりあえずエラーは消えた．
+
+また `predict.py` で行われるダウンロードで接続先の SSL 証明書が正しくないのか，エラーが出てしまう．
+PEP 0476に従い、Python2.7.9以降はSSL証明書が正しくない場合にはデフォルトでSSL認証エラーを出すようになったそうだ．
+```
+urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed
+```
+やっていることの安全が確かめられるなら以下のコードを追加すれば通すことはできる．参照: [SSL証明書が正しくないサイトに対してPythonでアクセスする](https://shinespark.hatenablog.com/entry/2015/12/06/100000)
+``` python
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+```
