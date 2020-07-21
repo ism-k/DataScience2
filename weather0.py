@@ -26,7 +26,7 @@ plt.title(date+' - param '+param)
 plt.show()
 
 
-lllat = 46.25 
+lllat = 46.25
 urlat = 51.896
 lllon = -5.842
 urlon = 2  
